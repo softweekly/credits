@@ -1,0 +1,4 @@
+# Credits Generator Dependencies
+moviepy==1.0.3
+imageio-ffmpeg
+# Note: PIL/Pillow compatibility is handled in code with ANTIALIAS->LANCZOS fix
