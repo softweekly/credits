@@ -11,7 +11,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, colorchooser, messagebox
 import json
 import os
-from moviepy.editor import TextClip, CompositeVideoClip, ColorClip, ImageClip
+from moviepy.editor import TextClip, CompositeVideoClip, ColorClip, ImageClip, VideoFileClip, AudioFileClip
 import moviepy.config as cf
 
 # Configure ImageMagick path for Windows
@@ -32,6 +32,8 @@ class CreditsGeneratorGUI:
             "text_color": "#FFFFFF",
             "bg_color": "#000000",
             "bg_image": "",
+            "audio_file": "",
+            "use_video_audio": True,
             "output_file": "movie_credits.mp4"
         }
         
@@ -164,17 +166,43 @@ class CreditsGeneratorGUI:
         self.bg_color_label = ttk.Label(bg_color_frame, text=self.settings["bg_color"])
         self.bg_color_label.pack(side=tk.LEFT, padx=5)
         
-        # Background image section
-        bg_image_frame = ttk.LabelFrame(self.appearance_frame, text="Background Image")
-        bg_image_frame.pack(fill=tk.X, padx=10, pady=10)
+        # Background media section
+        bg_media_frame = ttk.LabelFrame(self.appearance_frame, text="Background Media")
+        bg_media_frame.pack(fill=tk.X, padx=10, pady=10)
         
-        bg_select_frame = ttk.Frame(bg_image_frame)
+        bg_select_frame = ttk.Frame(bg_media_frame)
         bg_select_frame.pack(fill=tk.X, padx=10, pady=5)
-        ttk.Button(bg_select_frame, text="Select Image", command=self.choose_bg_image).pack(side=tk.LEFT)
-        ttk.Button(bg_select_frame, text="Clear Image", command=self.clear_bg_image).pack(side=tk.LEFT, padx=5)
+        ttk.Button(bg_select_frame, text="Select Image/Video", command=self.choose_bg_media).pack(side=tk.LEFT)
+        ttk.Button(bg_select_frame, text="Clear Background", command=self.clear_bg_media).pack(side=tk.LEFT, padx=5)
         
-        self.bg_image_label = ttk.Label(bg_image_frame, text="No image selected")
-        self.bg_image_label.pack(padx=10, pady=5)
+        self.bg_media_label = ttk.Label(bg_media_frame, text="No background selected")
+        self.bg_media_label.pack(padx=10, pady=5)
+        
+        self.bg_media_info = ttk.Label(bg_media_frame, text="", font=("Arial", 9), foreground="gray")
+        self.bg_media_info.pack(padx=10, pady=2)
+        
+        # Audio section
+        audio_frame = ttk.LabelFrame(self.appearance_frame, text="Audio")
+        audio_frame.pack(fill=tk.X, padx=10, pady=10)
+        
+        # Audio source info
+        self.audio_source_label = ttk.Label(audio_frame, text="Audio: Will use background silence", font=("Arial", 10, "bold"))
+        self.audio_source_label.pack(padx=10, pady=5)
+        
+        # Audio file selection
+        audio_select_frame = ttk.Frame(audio_frame)
+        audio_select_frame.pack(fill=tk.X, padx=10, pady=5)
+        ttk.Button(audio_select_frame, text="Add Audio File", command=self.choose_audio_file).pack(side=tk.LEFT)
+        ttk.Button(audio_select_frame, text="Clear Audio", command=self.clear_audio_file).pack(side=tk.LEFT, padx=5)
+        
+        self.audio_file_label = ttk.Label(audio_frame, text="No audio file selected")
+        self.audio_file_label.pack(padx=10, pady=2)
+        
+        # Audio options
+        self.use_video_audio_var = tk.BooleanVar(value=True)
+        self.video_audio_check = ttk.Checkbutton(audio_frame, text="Use video audio (if background is video)", 
+                                                variable=self.use_video_audio_var, command=self.update_audio_status)
+        self.video_audio_check.pack(padx=10, pady=5)
         
     def setup_settings_tab(self):
         # Video settings
@@ -368,18 +396,78 @@ class CreditsGeneratorGUI:
                 self.bg_color_btn.config(bg=color)
                 self.bg_color_label.config(text=color)
     
-    def choose_bg_image(self):
+    def choose_bg_media(self):
         filename = filedialog.askopenfilename(
-            title="Select Background Image",
-            filetypes=[("Image files", "*.png *.jpg *.jpeg *.gif *.bmp")]
+            title="Select Background Image or Video",
+            filetypes=[
+                ("All supported", "*.png *.jpg *.jpeg *.gif *.bmp *.mp4 *.mov *.avi *.mkv *.wmv"),
+                ("Image files", "*.png *.jpg *.jpeg *.gif *.bmp"),
+                ("Video files", "*.mp4 *.mov *.avi *.mkv *.wmv")
+            ]
         )
         if filename:
             self.settings["bg_image"] = filename
-            self.bg_image_label.config(text=os.path.basename(filename))
+            file_name = os.path.basename(filename)
+            self.bg_media_label.config(text=file_name)
+            
+            # Check if it's a video file
+            video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.wmv']
+            is_video = any(filename.lower().endswith(ext) for ext in video_extensions)
+            
+            if is_video:
+                self.bg_media_info.config(text="Video file - audio will be used automatically")
+            else:
+                self.bg_media_info.config(text="Image file - add separate audio if needed")
+            
+            self.update_audio_status()
     
-    def clear_bg_image(self):
+    def clear_bg_media(self):
         self.settings["bg_image"] = ""
-        self.bg_image_label.config(text="No image selected")
+        self.bg_media_label.config(text="No background selected")
+        self.bg_media_info.config(text="")
+        self.update_audio_status()
+    
+    def choose_audio_file(self):
+        filename = filedialog.askopenfilename(
+            title="Select Audio File",
+            filetypes=[
+                ("Audio files", "*.mp3 *.wav *.aac *.ogg *.flac *.m4a"),
+                ("All files", "*.*")
+            ]
+        )
+        if filename:
+            self.settings["audio_file"] = filename
+            self.audio_file_label.config(text=os.path.basename(filename))
+            self.update_audio_status()
+    
+    def clear_audio_file(self):
+        self.settings["audio_file"] = ""
+        self.audio_file_label.config(text="No audio file selected")
+        self.update_audio_status()
+    
+    def update_audio_status(self):
+        bg_file = self.settings["bg_image"]
+        audio_file = self.settings["audio_file"]
+        use_video_audio = self.use_video_audio_var.get()
+        
+        # Check if background is video
+        is_bg_video = False
+        if bg_file:
+            video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.wmv']
+            is_bg_video = any(bg_file.lower().endswith(ext) for ext in video_extensions)
+        
+        # Determine audio source
+        if audio_file:
+            self.audio_source_label.config(text="Audio: Custom audio file", foreground="blue")
+        elif is_bg_video and use_video_audio:
+            self.audio_source_label.config(text="Audio: From background video", foreground="green")
+        elif is_bg_video and not use_video_audio:
+            self.audio_source_label.config(text="Audio: Silent (video audio disabled)", foreground="orange")
+        else:
+            self.audio_source_label.config(text="Audio: Silent (no audio source)", foreground="gray")
+        
+        # Update settings
+        self.settings["use_video_audio"] = use_video_audio
     
     def preview_credits(self):
         # Create preview window
@@ -523,14 +611,42 @@ class CreditsGeneratorGUI:
         
         scrolling_credits = full_credits_panel.set_position(scroll).set_duration(self.settings["duration"])
         
-        # Create background
-        if self.settings["bg_image"] and os.path.exists(self.settings["bg_image"]):
-            bg = ImageClip(self.settings["bg_image"]).resize((screen_w, screen_h)).set_duration(self.settings["duration"])
+        # Create background and handle audio
+        audio_clip = None
+        bg_file = self.settings["bg_image"]
+        
+        if bg_file and os.path.exists(bg_file):
+            # Check if background is video or image
+            video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.wmv']
+            is_video = any(bg_file.lower().endswith(ext) for ext in video_extensions)
+            
+            if is_video:
+                # Background is video
+                bg_video = VideoFileClip(bg_file).resize((screen_w, screen_h)).set_duration(self.settings["duration"])
+                bg = bg_video.without_audio()  # We'll handle audio separately
+                
+                # Get audio from video if enabled
+                if self.settings["use_video_audio"] and bg_video.audio is not None:
+                    audio_clip = bg_video.audio.set_duration(self.settings["duration"])
+            else:
+                # Background is image
+                bg = ImageClip(bg_file).resize((screen_w, screen_h)).set_duration(self.settings["duration"])
         else:
+            # No background file - use solid color
             bg = ColorClip(size=(screen_w, screen_h), color=bg_color).set_duration(self.settings["duration"])
         
-        # Combine and write
+        # Override with custom audio file if provided
+        if self.settings["audio_file"] and os.path.exists(self.settings["audio_file"]):
+            audio_clip = AudioFileClip(self.settings["audio_file"]).set_duration(self.settings["duration"])
+        
+        # Combine video
         final_video = CompositeVideoClip([bg, scrolling_credits])
+        
+        # Add audio if available
+        if audio_clip is not None:
+            final_video = final_video.set_audio(audio_clip)
+        
+        # Write to file
         final_video.write_videofile(self.settings["output_file"], fps=self.settings["fps"], codec="libx264")
     
     def save_project(self):
@@ -575,10 +691,29 @@ class CreditsGeneratorGUI:
                 self.bg_color_btn.config(bg=self.settings["bg_color"])
                 self.bg_color_label.config(text=self.settings["bg_color"])
                 
+                # Update background media
                 if self.settings["bg_image"]:
-                    self.bg_image_label.config(text=os.path.basename(self.settings["bg_image"]))
+                    self.bg_media_label.config(text=os.path.basename(self.settings["bg_image"]))
+                    video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.wmv']
+                    is_video = any(self.settings["bg_image"].lower().endswith(ext) for ext in video_extensions)
+                    if is_video:
+                        self.bg_media_info.config(text="Video file - audio will be used automatically")
+                    else:
+                        self.bg_media_info.config(text="Image file - add separate audio if needed")
                 else:
-                    self.bg_image_label.config(text="No image selected")
+                    self.bg_media_label.config(text="No background selected")
+                    self.bg_media_info.config(text="")
+                
+                # Update audio settings
+                if self.settings.get("audio_file"):
+                    self.audio_file_label.config(text=os.path.basename(self.settings["audio_file"]))
+                else:
+                    self.audio_file_label.config(text="No audio file selected")
+                
+                if "use_video_audio" in self.settings:
+                    self.use_video_audio_var.set(self.settings["use_video_audio"])
+                
+                self.update_audio_status()
                 
                 messagebox.showinfo("Success", "Project loaded successfully!")
                 
