@@ -621,13 +621,18 @@ class CreditsGeneratorGUI:
             is_video = any(bg_file.lower().endswith(ext) for ext in video_extensions)
             
             if is_video:
-                # Background is video
-                bg_video = VideoFileClip(bg_file).resize((screen_w, screen_h)).set_duration(self.settings["duration"])
+                # Background is video - trim to video duration
+                raw_bg = VideoFileClip(bg_file)
+                video_duration = self.settings["duration"]
+                trim_end = min(raw_bg.duration, video_duration)
+                bg_video = raw_bg.subclip(0, trim_end).resize((screen_w, screen_h)).set_duration(trim_end)
                 bg = bg_video.without_audio()  # We'll handle audio separately
                 
                 # Get audio from video if enabled
                 if self.settings["use_video_audio"] and bg_video.audio is not None:
-                    audio_clip = bg_video.audio.set_duration(self.settings["duration"])
+                    raw_audio = bg_video.audio
+                    trim_end = min(raw_audio.duration, self.settings["duration"])
+                    audio_clip = raw_audio.subclip(0, trim_end)
             else:
                 # Background is image
                 bg = ImageClip(bg_file).resize((screen_w, screen_h)).set_duration(self.settings["duration"])
@@ -637,7 +642,10 @@ class CreditsGeneratorGUI:
         
         # Override with custom audio file if provided
         if self.settings["audio_file"] and os.path.exists(self.settings["audio_file"]):
-            audio_clip = AudioFileClip(self.settings["audio_file"]).set_duration(self.settings["duration"])
+            raw_audio = AudioFileClip(self.settings["audio_file"])
+            video_duration = self.settings["duration"]
+            trim_end = min(raw_audio.duration, video_duration)
+            audio_clip = raw_audio.subclip(0, trim_end)
         
         # Combine video
         final_video = CompositeVideoClip([bg, scrolling_credits])
