@@ -1,0 +1,631 @@
+{
+  "settings": {
+    "duration": 90,
+    "resolution": "1920x1080",
+    "fps": 30,
+    "font": "Arial",
+    "text_color": "#FFFFFF",
+    "bg_color": "#000000",
+    "bg_image": "",
+    "audio_file": "",
+    "use_video_audio": true,
+    "output_file": "movie_credits.mp4"
+  },
+  "credits_data": [
+    {
+      "type": "header",
+      "content": "DIRECTED BY"
+    },
+    {
+      "type": "name",
+      "content": "ALEXANDER SMITH"
+    },
+    {
+      "type": "spacer",
+      "content": "40"
+    },
+    {
+      "type": "header",
+      "content": "PRODUCED BY"
+    },
+    {
+      "type": "name",
+      "content": "SARAH JENKINS"
+    },
+    {
+      "type": "name",
+      "content": "MICHAEL CHEN"
+    },
+    {
+      "type": "spacer",
+      "content": "80"
+    },
+    {
+      "type": "header",
+      "content": "EXECUTIVE PRODUCERS"
+    },
+    {
+      "type": "spacer",
+      "content": "40"
+    },
+    {
+      "type": "pair",
+      "role": "$1,601.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$1,000.00",
+      "name": "William Borgeson"
+    },
+    {
+      "type": "pair",
+      "role": "$1,000.00",
+      "name": "Brian Landon"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "Nikki Glaser"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "Daniel Tosh"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "David Chandler"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "William Borgeson"
+    },
+    {
+      "type": "pair",
+      "role": "$500.00",
+      "name": "Dr Steve"
+    },
+    {
+      "type": "pair",
+      "role": "$327.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$300.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$300.00",
+      "name": "James Florentine"
+    },
+    {
+      "type": "pair",
+      "role": "$250.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$238.00",
+      "name": "W B"
+    },
+    {
+      "type": "pair",
+      "role": "$200.00",
+      "name": "Ken Mosca"
+    },
+    {
+      "type": "pair",
+      "role": "$200.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$200.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$200.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$200.00",
+      "name": "Dominiek De Cokere"
+    },
+    {
+      "type": "pair",
+      "role": "$106.00",
+      "name": "Brian Landon"
+    },
+    {
+      "type": "pair",
+      "role": "$105.00",
+      "name": "Adam Busch"
+    },
+    {
+      "type": "pair",
+      "role": "$101.00",
+      "name": "Nicholas Swardson"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Stokely Klasovsky"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Johnn Carson"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Vincent Spinelli Jr"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Tom Myers"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Richard Peterson"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "william kennedy"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "David Shaffer"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Fernom S3J"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Ian Feuerhake"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Albert Kreischer"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Lorraine Hart"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Dominiek De Cokere"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Mikayla Mirabella"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Liam M"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Godfrey Danchimah"
+    },
+    {
+      "type": "pair",
+      "role": "$100.00",
+      "name": "Kevin Brennan"
+    },
+    {
+      "type": "header",
+      "content": "THANK YOU TO OUR SUPPORTERS"
+    },
+    {
+      "type": "pair",
+      "role": "$64.00",
+      "name": "Kevin Brennan"
+    },
+    {
+      "type": "pair",
+      "role": "$51.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$50.00",
+      "name": "Maude Levy"
+    },
+    {
+      "type": "pair",
+      "role": "$50.00",
+      "name": "Vince Griswold"
+    },
+    {
+      "type": "pair",
+      "role": "$50.00",
+      "name": "James Osullivan"
+    },
+    {
+      "type": "pair",
+      "role": "$50.00",
+      "name": "Michael Colasante"
+    },
+    {
+      "type": "pair",
+      "role": "$40.00",
+      "name": "Phillip Scearce"
+    },
+    {
+      "type": "pair",
+      "role": "$30.00",
+      "name": "Ronald Kolodziej"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Christopher Martin"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Jeff Dye"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "bruce neely"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Nick In Fort Wayne"
+    },
+    {
+      "type": "pair",
+      "role": "$25.00",
+      "name": "Katie Smith"
+    },
+    {
+      "type": "pair",
+      "role": "$20.00",
+      "name": "Susan Deskiewicz"
+    },
+    {
+      "type": "pair",
+      "role": "$20.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$20.00",
+      "name": "UpInDis Mufa"
+    },
+    {
+      "type": "pair",
+      "role": "$20.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$20.00",
+      "name": "American Cupcake"
+    },
+    {
+      "type": "pair",
+      "role": "$17.00",
+      "name": "Dustin Paisley"
+    },
+    {
+      "type": "pair",
+      "role": "$17.00",
+      "name": "Dustin Paisley"
+    },
+    {
+      "type": "pair",
+      "role": "$12.00",
+      "name": "John Maxwell"
+    },
+    {
+      "type": "pair",
+      "role": "$11.00",
+      "name": "Richard Kish"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Bo Beardington, to spite Cumia"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Ben Gleib"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "John S"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Eric Paul"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Alex Ortiz"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Michel Bussiere"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "CLIFFORD HRITZ"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Tio Hank"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Diana Sklans"
+    },
+    {
+      "type": "pair",
+      "role": "$10.00",
+      "name": "Jessica Hudson"
+    },
+    {
+      "type": "pair",
+      "role": "$7.00",
+      "name": "luke ."
+    },
+    {
+      "type": "pair",
+      "role": "$7.00",
+      "name": "Luke ."
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Erik H"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Jesse L"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Michael Dean"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Patrick Melton"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "El Horrible\u2019"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Cardiff Electric"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Rocco's Butt Razor"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Darin Hurt-Ritenburg"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Owen Galluzzo"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Kevin Scampoli"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Pat Dixon"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Mersh and Icedancer"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "John Melendez"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Quad Father"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Karmic X"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Ray Devito"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "eugene driscoll"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Daniel Mullen"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "cee dub"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "sam swafford"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Tim Bullinger"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Michael Colombo"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Craig Wiernik"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "camille Giannelli"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "camille Giannelli"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Aaron Imholte"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Michael Colombo"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Diana Sklans"
+    },
+    {
+      "type": "pair",
+      "role": "$5.00",
+      "name": "Anonymous"
+    },
+    {
+      "type": "pair",
+      "role": "$1.00",
+      "name": "Jake Hudson"
+    }
+  ]
+}

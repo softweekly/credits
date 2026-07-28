@@ -3,7 +3,7 @@ import PIL.Image
 if not hasattr(PIL.Image, 'ANTIALIAS'):
     PIL.Image.ANTIALIAS = PIL.Image.LANCZOS
 
-from moviepy.editor import TextClip, CompositeVideoClip, ColorClip
+from moviepy.editor import TextClip, CompositeVideoClip, ColorClip, ImageClip
 import moviepy.config as cf
 
 # Configure ImageMagick path for Windows
@@ -105,6 +105,13 @@ def create_credits():
 
     # Combine all text into one big clip
     full_credits_panel = CompositeVideoClip(clips, size=(screen_w, current_h))
+    
+    # Pre-render the credits panel to a single image to avoid re-rendering
+    # each TextClip on every frame (this was causing 60x slowdown).
+    # We also extract the alpha mask so the text background stays transparent.
+    panel_frame = full_credits_panel.get_frame(0)
+    mask_frame = full_credits_panel.mask.get_frame(0)
+    full_credits_panel = ImageClip(panel_frame).set_mask(ImageClip(mask_frame, ismask=True))
     
     # Calculate scroll movement
     # We want it to start with the top just below the screen and end with the bottom just above the screen
